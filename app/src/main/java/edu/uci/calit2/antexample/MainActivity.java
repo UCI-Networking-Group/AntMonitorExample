@@ -76,9 +76,12 @@ public class MainActivity extends Activity implements AntMonitorActivity, View.O
         mVpnController = VpnController.getInstance(this);
 
         // We plan on using SSL bumping, so we must install root certificate
-        Intent i = new Intent(MainActivity.this, TLSCertificateActivity.class);
-        i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-        startActivityForResult(i, VpnController.REQUEST_INSTALL_CERT);
+        try {
+            VpnController.setSSLBumpingEnabled(this, true);
+        } catch (IllegalStateException e) {
+            Intent i = new Intent(MainActivity.this, TLSCertificateActivity.class);
+            startActivityForResult(i, VpnController.REQUEST_INSTALL_CERT);
+        }
     }
 
     @Override
@@ -160,16 +163,8 @@ public class MainActivity extends Activity implements AntMonitorActivity, View.O
             ExamplePacketConsumer outConsumer =
                     new ExamplePacketConsumer(this, TrafficType.OUTGOING_PACKETS, userID);
 
-            // Pass in the given SDK API and pass in a AuthenticateAPIListener to know when
-            // the connection is complete (and whether it is successful)
+            // Connect - this will trigger onVpnStateChanged
             mVpnController.connect(null, outFilter, incConsumer, outConsumer);
-
-        } else if (request == VpnController.REQUEST_INSTALL_CERT) {
-            if (result == Activity.RESULT_OK) {
-                Log.d(TAG, "Certificate installed.");
-            } else {
-                Log.d(TAG, "Certificate not installed.");
-            }
         }
     }
 }
