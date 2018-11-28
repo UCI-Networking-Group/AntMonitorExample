@@ -2,6 +2,10 @@
 This is a repository for a simple example of how to use the [AntMonitor
 Library](https://github.com/UCI-Networking-Group/AntMonitor).
 
+### License
+AntMonitorExample is licensed under
+[GPLv2](https://www.gnu.org/licenses/old-licenses/gpl-2.0.html).
+
 ## Using the AntMonitor Library in Your Own App
 ### Setup
 * The library is available in this repo: `app/libs/antmonitorlib.aar`.
@@ -27,9 +31,14 @@ dependencies {
 ```
 You are now ready to use the AntMonitor Library!
 
-### Examples
+### Documentation
+#### Examples
 You can either use the app provided in this repo as a starting point,
 or follow a step-by-step guide available
+[here](https://uci-networking-group.github.io/AntMonitorExample).
+
+#### Javadoc
+The Javadoc of the AntMonitor library APIs is available
 [here](https://uci-networking-group.github.io/AntMonitorExample).
 
 ### Citing AntMonitor
@@ -46,3 +55,7 @@ follows:
   year={2016}
 }
 ```
+
+We also encourage you to provide us (<antmonitor.uci@gmail.com>) with a
+link to your publication. We use this information in reports to our
+funding agencies.
